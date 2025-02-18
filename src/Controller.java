@@ -87,6 +87,22 @@ public class Controller {
                 .toList();
     }
 
+    List<Characteren> getCharacterenMitProdukteAufUniverzum(String univerzum){
+        return getAllCharacteren()
+                .stream()
+                .filter(patienten -> patienten.getProdukteList().stream()
+                        .anyMatch(medikamente -> medikamente.getUniverzum().equalsIgnoreCase(univerzum))
+                )
+                .toList();
+    }
 
+    List<Produkte> getProdukteSortedNachPreis(Characteren characteren, String sort){
+        return characteren.getProdukteList()
+                .stream()
+                .sorted((m1, m2)->sort.equalsIgnoreCase("asc") ?
+                        Double.compare(m1.getPrice(), m2.getPrice()) :
+                        Double.compare(m2.getPrice(), m1.getPrice()))
+                .toList();
+    }
 
 }

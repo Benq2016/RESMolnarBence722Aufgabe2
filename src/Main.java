@@ -26,6 +26,9 @@ public class Main {
                     8-Update Characteren
                     9-Get Characteren
                     10-Get All Characteren
+                    11-Filter Region
+                    12-Characteren mit Produkte aus einem Univerzum
+                    13-Produkte sorted asc/desc
                     """);
             String input = scanner.nextLine();
             switch (input) {
@@ -135,7 +138,24 @@ public class Main {
                     controller.filterRegion(region).forEach(System.out::println);
                     break;
                 }
-
+                case "12": {
+                    System.out.println("Please enter the univerzum:");
+                    String univerzum = scanner.nextLine();
+                    controller.getCharacterenMitProdukteAufUniverzum(univerzum).forEach(System.out::println);
+                    break;
+                }
+                case "13": {
+                    controller.getAllCharacteren().forEach(System.out::println);
+                    System.out.println("Please enter the character Name:");
+                    String name = scanner.nextLine();
+                    System.out.println("Please enter the sort type(asc/desc):");
+                    String sort = scanner.nextLine();
+                    Characteren characteren = controller.getCharacteren(name);
+                    if (characteren != null)
+                        controller.getProdukteSortedNachPreis(characteren, sort).forEach(System.out::println);
+                    else
+                        System.out.println("No Characterem with this Name found!");
+                }
             }
         }
     }
