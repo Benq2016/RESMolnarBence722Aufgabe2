@@ -3,7 +3,6 @@ package src;
 import src.Domain.Characteren;
 import src.Domain.Produkte;
 
-import javax.xml.namespace.QName;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -41,7 +40,7 @@ public class Main {
                     String price = scanner.nextLine();
                     System.out.println("Please enter the univerzum:");
                     String univerzum = scanner.nextLine();
-                    controller.createProdukt(name, Integer.parseInt(price), univerzum);
+                    controller.createProdukt(name, Double.parseDouble(price), univerzum);
                     break;
                 }
                 case "2": {
@@ -57,7 +56,7 @@ public class Main {
                     String price = scanner.nextLine();
                     System.out.println("Please enter the univerzum:");
                     String univerzum = scanner.nextLine();
-                    controller.updateProduct(name, Integer.parseInt(price), univerzum);
+                    controller.updateProduct(name, Double.parseDouble(price), univerzum);
                     break;
                 }
                 case "4": {
@@ -130,12 +129,38 @@ public class Main {
                     controller.getAllCharacteren().forEach(System.out::println);
                     break;
                 }
+                case "11": {
+                    System.out.println("Please enter the Region:");
+                    String region = scanner.nextLine();
+                    controller.filterRegion(region).forEach(System.out::println);
+                    break;
+                }
 
             }
         }
     }
 
     public static void main(String[] args) {
+        controller.createProdukt("Mjolnir", 500.0, "Asgard");
+        controller.createProdukt("Vibranium-Schild", 700.0, "Wakanda");
+        controller.createProdukt("Infinity Gauntlet", 10000.0, "Titan");
+        controller.createProdukt("Web-Shooter", 250.0, "Terra");
+        controller.createProdukt("Arc-Reaktor", 1500.0, "Terra");
+        controller.createProdukt("Norn Stones", 1200.0, "Asgard");
+        controller.createProdukt("Quantum Suit", 3000.0, "Terra");
+        controller.createProdukt("X-Gene Serum", 850.0, "X-Mansion");
+        controller.createProdukt("Cosmic Cube", 9000.0, "Multiverse");
+        controller.createProdukt("Darkhold", 2000.0, "Multiverse");
+
+        List<Produkte> pl1 = new ArrayList<>();
+        pl1.add(controller.getProdukt("Mjolnir")); pl1.add(controller.getProdukt("Norn Stones"));
+        pl1.add(controller.getProdukt("Darkhold"));
+        controller.createCharacter(1, "Thor", "Asgard", pl1);
+
+        List<Produkte> pl2 = new ArrayList<>();
+        pl2.add(controller.getProdukt("Vibranium-Schild")); pl2.add(controller.getProdukt("X-Gene Serum"));
+        controller.createCharacter(2, "Black Panther", "Wakanda", pl2);
+
         Main main = new Main();
         main.UI();
     }

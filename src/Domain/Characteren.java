@@ -20,6 +20,14 @@ public class Characteren implements HasName{
         return name;
     }
 
+    public String getRegion() {
+        return region;
+    }
+
+    public List<Produkte> getProdukteList() {
+        return produkteList;
+    }
+
     public String toString() {
         return id + " " + name +  " " + region + " " + produkteList;
     }

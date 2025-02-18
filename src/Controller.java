@@ -11,7 +11,7 @@ public class Controller {
     Repository<Characteren> characterenRepo = new inMemoryRepo<>();
     Repository<Produkte> produkteRepository = new inMemoryRepo<>();
 
-    Produkte createProdukt(String name, Integer price, String univerzum) {
+    Produkte createProdukt(String name, Double price, String univerzum) {
         Produkte produkt = new Produkte(name, price, univerzum);
         produkteRepository.add(produkt);
         return produkt;
@@ -21,7 +21,7 @@ public class Controller {
         produkteRepository.remove(name);
     }
 
-    Produkte updateProduct(String name, Integer price, String univerzum) {
+    Produkte updateProduct(String name, Double price, String univerzum) {
         Produkte produkt = new Produkte(name, price, univerzum);
         produkteRepository.update(produkt);
         return produkt;
@@ -79,5 +79,14 @@ public class Controller {
     List<Characteren> getAllCharacteren(){
         return characterenRepo.getAll();
     }
+
+    List<Characteren> filterRegion(String region){
+        return getAllCharacteren()
+                .stream()
+                .filter(characteren-> characteren.getRegion().equalsIgnoreCase(region))
+                .toList();
+    }
+
+
 
 }

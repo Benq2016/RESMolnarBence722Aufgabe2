@@ -2,10 +2,10 @@ package src.Domain;
 
 public class Produkte implements HasName{
     String name;
-    Integer price;
+    Double price;
     String univerzum;
 
-    public Produkte(String name, int price, String univerzum) {
+    public Produkte(String name, Double price, String univerzum) {
         this.name = name;
         this.price = price;
         this.univerzum = univerzum;
@@ -16,7 +16,7 @@ public class Produkte implements HasName{
         return this.name;
     }
 
-    public Integer getPrice() {
+    public Double getPrice() {
         return this.price;
     }
 
